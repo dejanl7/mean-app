@@ -6,7 +6,11 @@ var cookieParser  = require('cookie-parser');
 var bodyParser    = require('body-parser');
 var mongoose      = require('mongoose'); // Working with MongoDB
 
-var appRoutes = require('./routes/app');
+// Routes
+var appRoutes     = require('./routes/app');
+var messageRoutes = require('./routes/messages');
+var userRoutes    = require('./routes/user');
+
 var app       = express();
 mongoose.connect('localhost/node-angular'); 
 
@@ -38,6 +42,8 @@ app.use(function(req, res, next) {
 });
 
 // Target Routes
+app.use('/messages', messageRoutes);
+app.use('/user', userRoutes);
 app.use('/', appRoutes);
 
 
