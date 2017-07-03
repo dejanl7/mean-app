@@ -20,9 +20,14 @@ export class MessagesInputComponent implements OnInit {
         Methodes
     =============================*/
     onSubmit(form: NgForm){
-        console.log(form);
         const message = new Message(form.value.content, 'Max');
-        this.messagesService.addMessage(message);
+        
+        this.messagesService.addMessage(message)
+            .subscribe(
+                data     => console.log(data),
+                error    => console.log(error)
+            )
+        ;
         form.resetForm();
     }
 }

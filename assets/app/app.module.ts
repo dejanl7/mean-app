@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from "@angular/http";
 
 import { AppComponent } from "./app.component";
 import { AuthComponent } from './auth/auth.component';
@@ -27,7 +28,13 @@ import { LogoutComponent } from './auth/logout/logout.component';
         SigninComponent, 
         LogoutComponent
     ],
-    imports: [BrowserModule, FormsModule, routing, ReactiveFormsModule],
+    imports: [
+        BrowserModule, 
+        FormsModule, 
+        routing, 
+        ReactiveFormsModule,
+        HttpModule
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
