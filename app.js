@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
 
 // Target Routes
 app.use('/messages', messageRoutes);
-app.use('/user', userRoutes);
+//app.use('/user', userRoutes);
 app.use('/', appRoutes);
 
 
