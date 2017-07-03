@@ -2,11 +2,12 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
   color: #00B7FF;
 }
-
 input.ng-invalid.ng-touched {
   border: 1px solid red;
+}
+.col-md-8 {
+  padding-bottom: 14px;
 }
