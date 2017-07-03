@@ -1,15 +1,24 @@
 <div class="col-md-8 col-md-offset-2">
-    <div class="form-group">
-        <label for="content">Content</label>
-        <input type="text" id="content" class="form-control" #input>
-    </div>
-    <div class="form-group">
-        <button 
-            class="btn btn-primary" 
-            id="save-new-message" 
-            type="submit"
-            (click)="onSave(input.value)"
-        >Save</button>
-    </div>
-<hr>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+            <label for="content">Content</label>
+            <input 
+                type="text" 
+                id="content" 
+                class="form-control" 
+                ngModel
+                name="content"
+                required
+            >
+        </div>
+        <div class="form-group">
+            <button 
+                class="btn btn-primary" 
+                id="save-new-message" 
+                type="submit"
+                [disabled]="!f.valid"
+            >Save</button>
+        </div>
+    </form>
+    <hr>
 </div>
