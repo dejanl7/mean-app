@@ -24,7 +24,7 @@ export class MessagesService {
         const body      = JSON.stringify(message);
         return this.http.post('http://localhost:3000/message', body, {headers: headers})
             .map( (response: Response) => {
-                const result  = response.json();
+                const result        = response.json();
                 const serverMessage = new Message(result.obj.content, 'Dummy', result.obj._id, null);
                 this.messages.push(serverMessage);
             })
@@ -43,6 +43,7 @@ export class MessagesService {
                 }
 
                 this.messages = transformedMessages;
+
                 return transformedMessages;
             })
             .catch((error: Response) => Observable.throw(error.json()));

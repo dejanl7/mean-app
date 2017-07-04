@@ -29,6 +29,7 @@ export class MessagesInputComponent implements OnInit {
         // Edit Message
         if( this.message ){
             this.message.content = form.value.content;
+            this.message.username = 'dejanfx';
             this.messagesService.updateMessage(this.message)
                 .subscribe(
                     result => console.log(result)
