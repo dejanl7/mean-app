@@ -2,8 +2,8 @@ var express = require('express');
 var router  = express.Router();
 var jwt     = require('jsonwebtoken');
 
-var Message = require('../models/message'); // Import Mongoose Model
-
+var Message = require('../models/message'); // Import Mongoose Message Model
+var User    = require('../models/user'); // Import Mongoose User Model
 
 /*=============================
   Get All Messages
@@ -26,11 +26,11 @@ router.get('/', function(req, res, next){
 
 
 /*=============================
-    Send Message (POST)
+    Protect Route
 ===============================*/
 router.use('/', function(req, res, next) {
     jwt.verify(req.query.token, 'secret', function(err, decoded) {
-        if(err) {
+        if (err) {
             return res.status(401).json({
                 title: 'Not authenticated!',
                 error: err
@@ -40,24 +40,43 @@ router.use('/', function(req, res, next) {
     })
 });
 
+
+/*=============================
+    Send Message (POST)
+===============================*/
 router.post('/', function(req, res, next) {
-    var message = new Message({
-        content: req.body.content
-    });
-    message.save(function(err, result) {
-        if(err){
-            return res.status(500).json({
-                title: 'An error occured',
+    var decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user._id, function(err, user){
+        if (err) {
+            return res.status(401).json({
+                title: 'Not authenticated!',
                 error: err
             });
         }
-
-        // Save Message
-        res.status(201).json({
-            message: 'Saved message.',
-            obj: result
+        var message = new Message({
+            content: req.body.content,
+            user: user
         });
-    });
+
+        // Save
+        message.save(function(err, result) {
+            if(err){
+                return res.status(500).json({
+                    title: 'An error occured',
+                    error: err
+                });
+            }
+            
+            // Save Message
+            user.messages.push(result);
+            user.save();
+
+            res.status(201).json({
+                message: 'Saved message.',
+                obj: result
+            });
+        });
+    });    
 });
 
 
@@ -98,7 +117,6 @@ router.patch('/:id', function(req, res, next){
 });
 
 
-
 /*=============================
     Delete Message
 ===============================*/
@@ -112,7 +130,7 @@ router.delete('/:id', function(req, res, next){
         }
 
         // Remove Message
-        message.remove(function(err, result){
+        message.remove(function(err, result) {
             if (err) {
                 return result.status(500).json({
                     title: 'An error occured during removing message...',
