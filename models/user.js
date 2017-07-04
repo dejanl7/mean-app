@@ -1,6 +1,6 @@
 var mongoose          = require('mongoose');
 var Schema            = mongoose.Schema;
-var mUniqueValidator  = require('mongoose-unique-validator');
+//var mUniqueValidator  = require('mongoose-unique-validator');
 
 
 // Blueprint for Message Table
@@ -29,7 +29,7 @@ var schema = new Schema({
 
 
 // Use plugin to make unique validation (installed before)
-schema.plugin(mUniqueValidator);
+//schema.plugin(mUniqueValidator);
 
 
 module.exports = mongoose.model(
