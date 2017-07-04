@@ -14,8 +14,8 @@ export class MessagesListComponent implements OnInit {
 
     ngOnInit() {
         this.messagesService.getMessages()
-            .subscribe((messages: Message[]) => {
-                this.messages = messages;
+            .subscribe((messagesFromService: Message[]) => {
+                this.messages = messagesFromService;
             });
     }
 

@@ -6,12 +6,19 @@
                 type="text" 
                 id="content" 
                 class="form-control" 
-                ngModel
+                [ngModel]="message?.content"
                 name="content"
                 required
             >
         </div>
         <div class="form-group">
+            <button
+                type="button" 
+                class="btn btn-danger pull-left"
+                (click)="onClear(f)"
+            >  
+                Clear
+            </button> &nbsp;
             <button 
                 class="btn btn-primary" 
                 id="save-new-message" 

@@ -10,24 +10,47 @@ import { NgForm } from "@angular/forms";
 })
 
 export class MessagesInputComponent implements OnInit {
+    message: Message;
 
     constructor( private messagesService: MessagesService ) { }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.messagesService.messageIsEdit.subscribe(
+            (messageSubscribed: Message) => this.message = messageSubscribed
+        );
+    }
 
 
     /*===========================
         Methodes
     =============================*/
+    // Save
     onSubmit(form: NgForm){
-        const message = new Message(form.value.content, 'Max');
+        // Edit Message
+        if( this.message ){
+            this.message.content = form.value.content;
+            this.messagesService.updateMessage(this.message)
+                .subscribe(
+                    result => console.log(result)
+                );
+            this.message = null;
+        }
+            // Insert New Message
+            else {
+                const message = new Message(form.value.content, 'Max');
+                this.messagesService.addMessage(message)
+                    .subscribe(
+                        data     => console.log(data),
+                        error    => console.log(error)
+                    );
+                form.resetForm();
+            }
         
-        this.messagesService.addMessage(message)
-            .subscribe(
-                data     => console.log(data),
-                error    => console.log(error)
-            )
-        ;
+    }
+
+    // Clear form
+    onClear(form: NgForm){
+        this.message = null;
         form.resetForm();
     }
 }
