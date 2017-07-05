@@ -6,7 +6,7 @@
         <div class="author">
             {{ message.username }}
         </div>
-        <div class="config panel-default">
+        <div class="config panel-default" *ngIf="belongsToUser()">
             <a class="btn btn-primary" (click)="onEdit()">Edit</a>
             <a class="btn btn-danger" (click)="onDelete()">Delete</a>
         </div>

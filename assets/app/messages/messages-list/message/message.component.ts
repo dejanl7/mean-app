@@ -10,7 +10,7 @@ import { MessagesService } from "../../messages.service";
 export class MessageComponent implements OnInit {
     @Input('inputMessage') message: Message;
     
-    
+
     constructor(private messagesService: MessagesService) { }
 
     ngOnInit() {
@@ -30,5 +30,8 @@ export class MessageComponent implements OnInit {
             );
     }
 
+    belongsToUser() {
+        return localStorage.getItem('userId') == this.message.userId;
+    }
 
 }

@@ -10,6 +10,7 @@ var User    = require('../models/user'); // Import Mongoose User Model
 ===============================*/
 router.get('/', function(req, res, next){
     Message.find()
+        .populate('user', 'firstName')
         .exec(function(err, result) {
             if(err){
                 return res.status(500).json({
@@ -84,6 +85,7 @@ router.post('/', function(req, res, next) {
     Update Data
 ===============================*/
 router.patch('/:id', function(req, res, next){
+    var decoded = jwt.decode(req.query.token);
     Message.findById(req.params.id, function(err, message) {
         if(err) {
             return res.status(500).json({
@@ -97,13 +99,19 @@ router.patch('/:id', function(req, res, next){
                 error: { message: 'Message not found...' }
             });
         }
+        if(message.user != decoded.user._id) {
+            return res.status(401).json({
+                title: 'You don\'t have role to delete this message!',
+                error: {message: 'Users do not match!'}
+            })
+        }
 
         message.content = req.body.content;
         message.save(function(err, result){
             if(err){
                 return res.status(500).json({
                     title: 'An error occured',
-                    error: err
+                    error: {message: 'Users do not match!'}
                 });
             }
 
@@ -121,12 +129,19 @@ router.patch('/:id', function(req, res, next){
     Delete Message
 ===============================*/
 router.delete('/:id', function(req, res, next){
+    var decoded = jwt.decode(req.query.token);
     Message.findById(req.params.id, function(err, message){
         if (err) {
             return res.status(500).json({
                 title: 'An error occured',
                 error: err
             });
+        }
+        if(message.user != decoded.user._id) {
+            return res.status(401).json({
+                title: 'You don\'t have role to delete this message!',
+                error: err
+            })
         }
 
         // Remove Message
