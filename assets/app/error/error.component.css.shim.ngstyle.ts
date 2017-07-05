@@ -6,5 +6,5 @@
  /* tslint:disable */
 
 
-export const styles:any[] = ['.backdrop[_ngcontent-%COMP%] {\n    background-color: rgba(0, 0, 0, .6);\n    position: fixed;\n    top: 0; left: 0;\n    width: 100%;\n    height: 100vh;\n}'];
+export const styles:any[] = ['.backdrop[_ngcontent-%COMP%] {\r\n    background-color: rgba(0, 0, 0, .6);\r\n    position: fixed;\r\n    top: 0; left: 0;\r\n    width: 100%;\r\n    height: 100vh;\r\n}'];
 //# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiQzovTUVBTi9tYWluLXByb2plY3QvYXNzZXRzL2FwcC9lcnJvci9lcnJvci5jb21wb25lbnQuY3NzLnNoaW0ubmdzdHlsZS50cyIsInZlcnNpb24iOjMsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIm5nOi8vL0M6L01FQU4vbWFpbi1wcm9qZWN0L2Fzc2V0cy9hcHAvZXJyb3IvZXJyb3IuY29tcG9uZW50LmNzcyJdLCJzb3VyY2VzQ29udGVudCI6WyIgIl0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7In0=

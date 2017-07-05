@@ -6,5 +6,5 @@
  /* tslint:disable */
 
 
-export const styles:any[] = ['h1[_ngcontent-%COMP%] {\n    color: #000;\n}'];
+export const styles:any[] = ['h1[_ngcontent-%COMP%] {\r\n    color: #000;\r\n}'];
 //# sourceMappingURL=data:application/json;base64,eyJmaWxlIjoiQzovTUVBTi9tYWluLXByb2plY3QvYXNzZXRzL2FwcC9hcHAuY29tcG9uZW50LmNzcy5zaGltLm5nc3R5bGUudHMiLCJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJuZzovLy9DOi9NRUFOL21haW4tcHJvamVjdC9hc3NldHMvYXBwL2FwcC5jb21wb25lbnQuY3NzIl0sInNvdXJjZXNDb250ZW50IjpbIiAiXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7OzsifQ==
