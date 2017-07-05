@@ -12,7 +12,7 @@ var messageRoutes = require('./routes/messages');
 var userRoutes    = require('./routes/user');
 
 var app       = express();
-mongoose.connect('localhost/node-angular'); 
+mongoose.connect('dejanfx:123@ds013300.mlab.com:13300/angular4-deployment'); 
 
 
 /*=================================
