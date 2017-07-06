@@ -29,7 +29,7 @@ var MessagesService = (function () {
         var headers = new Headers({ 'Content-Type': 'application/json' });
         var body = JSON.stringify(message);
         var token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.post(' https://angular4-deployments.herokuapp.com/message' + token, body, { headers: headers })
+        return this.http.post(' http://simple.sdl-profile.net/message' + token, body, { headers: headers })
             .map(function (response) {
             var result = response.json();
             var serverMessage = new Message(result.obj.content, result.obj.user.firstName, result.obj._id, result.obj.user._id);
@@ -43,7 +43,7 @@ var MessagesService = (function () {
     // Get Messages
     MessagesService.prototype.getMessages = function () {
         var _this = this;
-        return this.http.get(' https://angular4-deployments.herokuapp.com/message')
+        return this.http.get(' http://simple.sdl-profile.net/message')
             .map(function (response) {
             var messages = response.json().obj;
             var transformedMessages = [];
@@ -69,7 +69,7 @@ var MessagesService = (function () {
         var headers = new Headers({ 'Content-Type': 'application/json' });
         var body = JSON.stringify(message);
         var token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.patch(' https://angular4-deployments.herokuapp.com/message/' + message.messageId + token, body, { headers: headers })
+        return this.http.patch(' http://simple.sdl-profile.net/message/' + message.messageId + token, body, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
@@ -81,7 +81,7 @@ var MessagesService = (function () {
         var _this = this;
         this.messages.splice(this.messages.indexOf(message), 1);
         var token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
-        return this.http.delete(' https://angular4-deployments.herokuapp.com/message/' + message.messageId + token)
+        return this.http.delete(' http://simple.sdl-profile.net/message/' + message.messageId + token)
             .map(function (response) { return response.json(); })
             .catch(function (error) {
             _this.errorService.handleError(error.json());
