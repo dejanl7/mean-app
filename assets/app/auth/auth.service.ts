@@ -19,7 +19,7 @@ export class AuthService {
     signup(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(' http://simple.sdl-profile.net/user', body, {headers: headers})
+        return this.http.post(' https://angular4-deployments.herokuapp.com/user', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -30,7 +30,7 @@ export class AuthService {
     signin(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(' http://simple.sdl-profile.net/user/signin', body, {headers: headers})
+        return this.http.post(' https://angular4-deployments.herokuapp.com/user/signin', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                     this.errorService.handleError(error.json());
